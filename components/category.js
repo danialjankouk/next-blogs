@@ -24,13 +24,22 @@ const Category = () => {
         } bg-slate-400 p-2 rounded-3xl md:rounded-t-none md:p-0 gap-x-5 justify-center md:w-full md:rounded-b-3xl flex md:flex-col`}
       >
         <h1 className="md:hover:bg-blue-400 md:mt-2 cursor-pointer md:pl-5">
-          JavaScript
+          Javascript
         </h1>
-        <h1 className="md:hover:bg-blue-400 cursor-pointer md:pl-5">React</h1>
-        <h1 className="md:hover:bg-blue-400 cursor-pointer md:pl-5">Vue.js</h1>
-        <h1 className="md:hover:bg-blue-400 cursor-pointer md:pl-5">Social</h1>
-        <h1 className="md:hover:bg-blue-400 md:pb-2 cursor-pointer md:pl-5 md:rounded-b-3xl">
-          Next.js
+        <h1 className="md:hover:bg-blue-400 md:mt-2 cursor-pointer md:pl-5">
+          Javascript
+        </h1>
+        <h1 className="md:hover:bg-blue-400 md:mt-2 cursor-pointer md:pl-5">
+          Javascript
+        </h1>
+        <h1 className="md:hover:bg-blue-400 md:mt-2 cursor-pointer md:pl-5">
+          Javascript
+        </h1>
+        <h1 className="md:hover:bg-blue-400 md:mt-2 cursor-pointer md:pl-5">
+          Javascript
+        </h1>
+        <h1 className="md:hover:bg-blue-400 md:mt-2 cursor-pointer md:pl-5">
+          Javascript
         </h1>
       </div>
     </div>
