@@ -4,19 +4,20 @@ import axios from "axios";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
 import { AiTwotoneHeart } from "react-icons/ai";
-import { BsBookmarkHeart, BsCurrencyYen } from "react-icons/bs";
+import { BsBookmarkHeart } from "react-icons/bs";
 import { MdOutlineComment } from "react-icons/md";
 import { HiBookmark } from "react-icons/hi";
+import Link from "next/link";
 const Blogs = ({ blogsData }) => {
   const [like, setLike] = useState(false);
   const [bookMark, setBookMark] = useState(false);
   return (
     <div className={`grid grid-cols-6 gap-8 md:col-span-9 rounded-lg`}>
-      {blogsData.data.docs.map((item, index) => {
+      {blogsData.data.docs.map((item) => {
         return (
           <div
-            key={index}
-            className="col-span-6 h-auto md:col-span-3 lg:col-span-2 bg-white rounded-xl p-4"
+            key={item._id}
+            className="col-span-6 max-h-[350px] md:col-span-3 lg:col-span-2 bg-white rounded-xl p-4"
           >
             {/* cover */}
             <div className="bg-slate-200 aspect-h-9 aspect-w-16 rounded-lg flex justify-center">
@@ -33,13 +34,19 @@ const Blogs = ({ blogsData }) => {
               {/* caption */}
               <div className="flex justify-between">
                 <p className="text-sm">{item.author.name}</p>
-                <span className="text-sm">
-                  {item.category !== null ? (
-                    item.category.englishTitle
-                  ) : (
-                    <p>unknow</p>
-                  )}
-                </span>
+                <Link
+                  href={`/blogs/${
+                    item.category !== null ? item.category.englishTitle : ""
+                  }`}
+                >
+                  <a className="text-sm bg-blue-300 p-1 rounded-xl">
+                    {item.category !== null ? (
+                      item.category.englishTitle
+                    ) : (
+                      <p>unknow</p>
+                    )}
+                  </a>
+                </Link>
               </div>
               {/* detail*/}
               <div className="flex flex-row-reverse justify-between">
@@ -50,8 +57,12 @@ const Blogs = ({ blogsData }) => {
                     <span>{item.commentsCount}</span>
                   </button>
                   {/* like */}
-                  <button className="cursor-pointer flex bg-red-300 rounded-md">
-                    <span onClick={() => setLike(!like)}>
+                  <button
+                    key={item._id}
+                    onClick={() => setLike(!like)}
+                    className="cursor-pointer flex bg-red-300 rounded-md"
+                  >
+                    <span>
                       {like ? (
                         <AiOutlineHeart />
                       ) : (
@@ -61,7 +72,7 @@ const Blogs = ({ blogsData }) => {
                     {item.likesCount}
                   </button>
                   {/* bookmark */}
-                  <button className="cursor-pointer bg-blue-300 rounded-md">
+                  <button className="cursor-pointer p-1 bg-blue-300 rounded-md">
                     <span onClick={() => setBookMark(!bookMark)}>
                       {bookMark ? (
                         <BsBookmarkHeart />
