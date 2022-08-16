@@ -4,9 +4,9 @@ import axios from "axios";
 import Category from "components/category";
 import Sort from "components/sort";
 import Blogs from "components/Blogs";
-const CategoryPage = ({ blogsData, categoryData }) => {
+const PostPage = ({ blogsData, categoryData }) => {
   return (
-    <div className="bg-gray-200 container mx-auto ">
+    <div className="bg-gray-200 h-auto">
       <div className="container mx-auto py-2 px-2">
         <div className="grid gap-4 md:grid-cols-12 md:grid-rows-[70px_minmax(300px,_1fr)] min-h-screen">
           {/*--------------- category---------------- */}
@@ -20,7 +20,7 @@ const CategoryPage = ({ blogsData, categoryData }) => {
     </div>
   );
 };
-export default CategoryPage;
+export default PostPage;
 
 export async function getServerSideProps(context) {
   const { data: result } = await axios.get(

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import queryString from "query-string";
 //components
 import Category from "components/category";
 import Sort from "components/sort";
@@ -14,7 +15,7 @@ const CategorySlug = ({ blogsData, categoryData }) => {
           {/* ------------------sort---------------- */}
           <Sort />
           {/* ---------------blogs--------------*/}
-          <Blogs blogsData={blogsData} /> 
+          <Blogs blogsData={blogsData} />;
         </div>
       </div>
     </div>
@@ -23,9 +24,9 @@ const CategorySlug = ({ blogsData, categoryData }) => {
 export default CategorySlug;
 
 export async function getServerSideProps(context) {
-  const { params } = context;
+  const { query } = context;
   const { data: result } = await axios.get(
-    `http://localhost:5000/api/posts?categorySlug=${params.categorySlug}`
+    `http://localhost:5000/api/posts?${queryString.stringify(query)}`
   );
   const { data: categoryData } = await axios.get(
     "http://localhost:5000/api/post-category"

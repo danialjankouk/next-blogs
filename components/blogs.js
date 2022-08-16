@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import PostIntraction from "./PostIntraction";
 //links
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -9,8 +9,6 @@ import { MdOutlineComment } from "react-icons/md";
 import { HiBookmark } from "react-icons/hi";
 import Link from "next/link";
 const Blogs = ({ blogsData }) => {
-  const [like, setLike] = useState(false);
-  const [bookMark, setBookMark] = useState(false);
   return (
     <div className={`grid grid-cols-6 gap-8 md:col-span-9 rounded-lg`}>
       {blogsData.data.docs.map((item) => {
@@ -30,7 +28,11 @@ const Blogs = ({ blogsData }) => {
             {/*content */}
             <div className="flex flex-col gap-y-3 bg-slate-200 rounded-lg p-2">
               {/* title */}
-              <h1 className="mt-2 text-xl">{item.title}</h1>
+              <Link href={`/posts/${item.hashId}/${item.slug}`} key={item._id}>
+                <a>
+                  <h1 className="mt-2 text-xl">{item.title}</h1>
+                </a>
+              </Link>
               {/* caption */}
               <div className="flex justify-between">
                 <p className="text-sm">{item.author.name}</p>
@@ -51,36 +53,7 @@ const Blogs = ({ blogsData }) => {
               {/* detail*/}
               <div className="flex flex-row-reverse justify-between">
                 <div className="flex flex-row-reverse gap-x-2">
-                  {/* comment */}
-                  <button className="cursor-pointer flex bg-purple-300 rounded-md">
-                    <MdOutlineComment />
-                    <span>{item.commentsCount}</span>
-                  </button>
-                  {/* like */}
-                  <button
-                    key={item._id}
-                    onClick={() => setLike(!like)}
-                    className="cursor-pointer flex bg-red-300 rounded-md"
-                  >
-                    <span>
-                      {like ? (
-                        <AiOutlineHeart />
-                      ) : (
-                        <AiTwotoneHeart className="text-red-600" />
-                      )}
-                    </span>
-                    {item.likesCount}
-                  </button>
-                  {/* bookmark */}
-                  <button className="cursor-pointer p-1 bg-blue-300 rounded-md">
-                    <span onClick={() => setBookMark(!bookMark)}>
-                      {bookMark ? (
-                        <BsBookmarkHeart />
-                      ) : (
-                        <HiBookmark className="text-blue-600" />
-                      )}
-                    </span>
-                  </button>
+                  <PostIntraction item={item} />
                 </div>
                 <div className="flex items-center gap-x-1">
                   <p className="text-xs">reading time: {item.readingTime}m</p>
