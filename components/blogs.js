@@ -2,11 +2,6 @@ import React, { useState, useEffect } from "react";
 import PostIntraction from "./PostIntraction";
 //links
 import { AiOutlineClockCircle } from "react-icons/ai";
-import { AiOutlineHeart } from "react-icons/ai";
-import { AiTwotoneHeart } from "react-icons/ai";
-import { BsBookmarkHeart } from "react-icons/bs";
-import { MdOutlineComment } from "react-icons/md";
-import { HiBookmark } from "react-icons/hi";
 import Link from "next/link";
 const Blogs = ({ blogsData }) => {
   return (
@@ -28,7 +23,7 @@ const Blogs = ({ blogsData }) => {
             {/*content */}
             <div className="flex flex-col gap-y-3 bg-slate-200 rounded-lg p-2">
               {/* title */}
-              <Link href={`/posts/${item.hashId}/${item.slug}`} key={item._id}>
+              <Link href={`/posts/${item.hashId}/${item.slug}`}>
                 <a>
                   <h1 className="mt-2 text-xl">{item.title}</h1>
                 </a>
