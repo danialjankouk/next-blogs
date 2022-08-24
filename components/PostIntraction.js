@@ -2,9 +2,9 @@ import React from 'react';
 //icons
 import { AiOutlineHeart } from "react-icons/ai";
 import { AiTwotoneHeart } from "react-icons/ai";
-import { BsBookmarkHeart } from "react-icons/bs";
 import { MdOutlineComment } from "react-icons/md";
 import { HiBookmark } from "react-icons/hi";
+import {FiBookmark} from "react-icons/fi"
 const PostIntraction = ({ item }) => {
   return (
     <div>
@@ -19,7 +19,7 @@ const PostIntraction = ({ item }) => {
             {!item.isLiked ? (
               <AiOutlineHeart className="fill-current" />
             ) : (
-              <AiTwotoneHeart className='stroke-current'/>
+              <AiTwotoneHeart className="stroke-current" />
             )}
           </span>
         </button>
@@ -27,9 +27,9 @@ const PostIntraction = ({ item }) => {
         <button className="cursor-pointer p-1 bg-blue-300 text-blue-500 rounded-md">
           <span>
             {!item.isBookmarked ? (
-              <BsBookmarkHeart className="fill-current" />
+              <HiBookmark className="fill-current" />
             ) : (
-              <HiBookmark className="stroke-current" />
+              <FiBookmark className="stroke-current" />
             )}
           </span>
         </button>

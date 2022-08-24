@@ -25,9 +25,10 @@ const CategoryPage = ({ blogsData, categoryData }) => {
 };
 export default CategoryPage;
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps({req}) {
   const { data: result } = await axios.get(
-    "http://localhost:5000/api/posts?limit=10"
+    "http://localhost:5000/api/posts?limit=10",
+    { withCredentials: true, headers: { Cookie: req.headers.cookie } }
   );
   const { data: categoryData } = await axios.get(
     "http://localhost:5000/api/post-category"
