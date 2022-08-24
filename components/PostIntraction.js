@@ -3,7 +3,7 @@ import React from "react";
 //icons
 import { AiOutlineHeart } from "react-icons/ai";
 import { AiTwotoneHeart } from "react-icons/ai";
-import {toast} from "react-hot-toast"
+import { toast } from "react-hot-toast";
 import http from "services/httpService";
 const PostIntraction = ({ item }) => {
   const router = useRouter();
@@ -12,7 +12,10 @@ const PostIntraction = ({ item }) => {
     http
       .put(`/posts/like/${postId}`)
       .then(({ data }) => {
-       router.push(router)
+        router.push({
+          pathname: router.pathname,
+          query: router.query,
+        });
         toast.success(data.message);
       })
       .catch((err) => {

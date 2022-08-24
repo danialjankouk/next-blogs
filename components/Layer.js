@@ -27,7 +27,7 @@ const Layer = () => {
         ) : (
           <div className="flex flex-row gap-x-10">
             <button
-              className="bg-red-400 p-1 rounded-md text-slate-600 font-bold items-center"
+              className="bg-slate-400 p-1 rounded-md text-white font-bold items-center"
               onClick={() => dispatch({ type: "SIGNOUT" })}
             >
               signout
