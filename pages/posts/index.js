@@ -5,6 +5,7 @@ import Category from "components/category";
 import Sort from "components/sort";
 import Blogs from "components/Blogs";
 import Layer from "components/Layer";
+import http from "services/httpService";
 const PostPage = ({ blogsData, categoryData }) => {
   return (
     <div className="bg-gray-200 h-auto">
@@ -26,12 +27,8 @@ const PostPage = ({ blogsData, categoryData }) => {
 export default PostPage;
 
 export async function getServerSideProps(context) {
-  const { data: result } = await axios.get(
-    "http://localhost:5000/api/posts?limit=10"
-  );
-  const { data: categoryData } = await axios.get(
-    "http://localhost:5000/api/post-category"
-  );
+  const { data: result } = await http.get("/posts?limit=10");
+  const { data: categoryData } = await http.get("/post-category");
   return {
     props: {
       blogsData: result,

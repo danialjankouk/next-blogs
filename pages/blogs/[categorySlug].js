@@ -6,6 +6,7 @@ import Category from "components/category";
 import Sort from "components/sort";
 import Blogs from "components/Blogs";
 import Layer from "components/Layer";
+import http from "services/httpService";
 const CategorySlug = ({ blogsData, categoryData }) => {
   return (
     <div className="bg-gray-200 h-auto">
@@ -26,12 +27,18 @@ const CategorySlug = ({ blogsData, categoryData }) => {
 export default CategorySlug;
 
 export async function getServerSideProps(context) {
-  const { query } = context;
-  const { data: result } = await axios.get(
-    `http://localhost:5000/api/posts?${queryString.stringify(query)}`
+  const { query ,req} = context;
+  const { data: result } = await http.get(
+    `/posts?${queryString.stringify(query)}`,
+    {
+      withCredentials: true,
+      headers: {
+        Cookie: req.headers.cookie || "",
+      },
+    }
   );
-  const { data: categoryData } = await axios.get(
-    "http://localhost:5000/api/post-category"
+  const { data: categoryData } = await http.get(
+    "/post-category"
   );
   return {
     props: {

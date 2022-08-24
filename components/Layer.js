@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useAuth, useAuthActions } from "context/AuthContext";
 const Layer = () => {
   const user = useAuth();
-  console.log(user);
   const dispatch = useAuthActions();
   return (
     <div className="flex justify-between px-10 h-14 items-center bg-white w-full shadow-2xl">

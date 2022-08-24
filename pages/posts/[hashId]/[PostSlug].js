@@ -6,14 +6,13 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 //components
 import PostIntraction from "components/PostIntraction";
 //icnon
-import { FiShare2 } from "react-icons/fi";
-import { BsBookmark } from "react-icons/bs";
 import { FiTwitter } from "react-icons/fi";
 import { ImLinkedin2 } from "react-icons/im";
 import { ImTelegram } from "react-icons/im";
 import { MdContentCopy } from "react-icons/md";
 import Layer from "components/Layer";
-const PostSlug = ({ blogsData ,post}) => {
+import http from "services/httpService";
+const PostSlug = ({ blogsData, post }) => {
   const [copy, setCopy] = useState(false);
   const copyHandler = () => {
     setCopy(true);
@@ -54,14 +53,6 @@ const PostSlug = ({ blogsData ,post}) => {
                     <span>{item.createdAt.slice(0, 10)}</span>.
                     <span>readingTime: {item.readingTime}</span>
                   </div>
-                </div>
-                <div className="gap-x-5 flex h-7 w-7">
-                  <button className="bg-purple-300 rounded-lg p-1">
-                    <FiShare2 />
-                  </button>
-                  <button className="bg-blue-300 rounded-lg p-1">
-                    <BsBookmark />
-                  </button>
                 </div>
               </header>
               <main className="max-w-screen-lg mx-auto">
@@ -159,17 +150,19 @@ const PostSlug = ({ blogsData ,post}) => {
 export default PostSlug;
 
 export async function getServerSideProps(ctx) {
-  const { query, params } = ctx;
-  const { data } = await axios.get(
-    `http://localhost:5000/api/posts?limit=10&${query.PostSlug}`
-  )
-  // const { data: post } = await axios.get(
-  //   "http://localhost:5000/api/post-comment/save-comment"
-  // );
+  const { query, req } = ctx;
+  const { data } = await http.get(
+    `/posts?limit=10&${query.PostSlug}`,
+    {
+      withCredentials: true,
+      headers: {
+        Cookie: req.headers.cookie || "",
+      },
+    }
+  );
   return {
     props: {
       blogsData: data,
-      // post
     },
   };
 }

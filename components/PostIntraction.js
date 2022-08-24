@@ -1,37 +1,38 @@
-import React from 'react';
+import { useRouter } from "next/router";
+import React from "react";
 //icons
 import { AiOutlineHeart } from "react-icons/ai";
 import { AiTwotoneHeart } from "react-icons/ai";
-import { MdOutlineComment } from "react-icons/md";
-import { HiBookmark } from "react-icons/hi";
-import {FiBookmark} from "react-icons/fi"
+import {toast} from "react-hot-toast"
+import http from "services/httpService";
 const PostIntraction = ({ item }) => {
+  const router = useRouter();
+
+  const likeHandler = (postId) => {
+    http
+      .put(`/posts/like/${postId}`)
+      .then(({ data }) => {
+       router.push(router)
+        toast.success(data.message);
+      })
+      .catch((err) => {
+        toast.error(err?.response?.data?.message);
+      });
+  };
   return (
     <div>
       <div className="flex flex-row-reverse gap-x-2">
-        {/* comment */}
-        <button className="cursor-pointer p-1 flex bg-purple-300 text-purple-500 rounded-md">
-          <MdOutlineComment />
-        </button>
         {/* like */}
-        <button className="cursor-pointer p-1 flex bg-red-300 text-red-500 rounded-md">
-          <span>
-            {!item.isLiked ? (
-              <AiOutlineHeart className="fill-current" />
-            ) : (
-              <AiTwotoneHeart className="stroke-current" />
-            )}
-          </span>
-        </button>
-        {/* bookmark */}
-        <button className="cursor-pointer p-1 bg-blue-300 text-blue-500 rounded-md">
-          <span>
-            {!item.isBookmarked ? (
-              <HiBookmark className="fill-current" />
-            ) : (
-              <FiBookmark className="stroke-current" />
-            )}
-          </span>
+        <button
+          onClick={() => likeHandler(item._id)}
+          className="cursor-pointer p-1 w-[2rem] items-center flex bg-red-300 text-red-500 rounded-md"
+        >
+          {item.isLiked ? (
+            <AiTwotoneHeart className="fill-current hover:text-white" />
+          ) : (
+            <AiOutlineHeart className="stroke-current hover:text-white" />
+          )}
+          <span className="font-bold">{item.likesCount}</span>
         </button>
       </div>
     </div>
