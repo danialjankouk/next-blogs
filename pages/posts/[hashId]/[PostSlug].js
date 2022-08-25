@@ -33,7 +33,7 @@ const PostSlug = ({ blogsData, post }) => {
               <header className="flex max-w-screen-lg mx-auto justify-between pr-10">
                 <div>
                   <div className="flex gap-x-2">
-                    <h1 className="font-bold">{item.author.name}</h1>
+                    <h1 className="font-bold">danial jankouk</h1>
                     <Link
                       href={`/blogs/${
                         item.category !== null ? item.category.englishTitle : ""
@@ -135,11 +135,6 @@ const PostSlug = ({ blogsData, post }) => {
                   </div>
                 </div>
               </section>
-              {/* <h2>comments :</h2> */}
-              {/* single comments */}
-              {/* <SingleComment comment={post} /> */}
-              {/* comments */}
-              {/* <PostComments post={post} /> */}
             </div>
           );
         })}

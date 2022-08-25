@@ -5,7 +5,7 @@ const Layer = () => {
   const user = useAuth();
   const dispatch = useAuthActions();
   return (
-    <div className="flex justify-between px-10 h-14 items-center bg-white w-full shadow-2xl">
+    <div className="flex justify-between px-5 h-14 items-center bg-white w-[30rem] md:w-full shadow-2xl">
       <div className="flex gap-x-10">
         {!user.user ? (
           <>
@@ -32,9 +32,9 @@ const Layer = () => {
             >
               signout
             </button>
-            <h1 className="text-slate-600">
-              welcome <span className="text-blue-300 font-bold">{user.user.name}</span>
-            </h1>
+            <span className="text-blue-300 font-bold italic items-center">
+              {user.user.name}
+            </span>
           </div>
         )}
       </div>

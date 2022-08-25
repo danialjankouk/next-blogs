@@ -21,7 +21,7 @@ const Sort = () => {
     routerPush(router);
   };
   return (
-    <div className="bg-blue-200 rounded-xl flex flex-col md:flex-row items-center text-xl md:col-span-9">
+    <div className="bg-blue-50 rounded-xl flex flex-col md:flex-row items-center text-xl md:col-span-9">
       {/* show Handler */}
       <div className="flex md:hidden">
         <button onClick={() => setShow(!show)}>filter</button>
@@ -44,9 +44,6 @@ const Sort = () => {
               className="cursor-pointer hover:text-purple-500 hover:border-b-4 transition-all ease-out border-blue-400"
             >
               {label}
-              {id === sort && (
-                <span className="h-[3px] bg-purple-700 w-8 rounded absolute right-0 bottom-0"></span>
-              )}
             </li>
           );
         })}

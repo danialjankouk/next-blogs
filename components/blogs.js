@@ -5,23 +5,25 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import Link from "next/link";
 const Blogs = ({ blogsData }) => {
   return (
-    <div className={`grid grid-cols-6 gap-8 md:col-span-9 rounded-lg`}>
+    <div
+      className={`grid grid-cols-6 gap-y-20 md:gap-y-0 gap-8 md:col-span-9 rounded-lg`}
+    >
       {blogsData.data.docs.map((item) => {
         return (
           <div
             key={item._id}
-            className="col-span-6 max-h-[350px] md:col-span-3 lg:col-span-2 bg-white rounded-xl p-4"
+            className="col-span-6 max-h-[350px] md:col-span-3 lg:col-span-2 backdrop-blur-sm rounded-xl p-4"
           >
-            {/* cover */}
-            <div className="bg-slate-200 aspect-h-9 aspect-w-16 rounded-lg flex justify-center">
-              <img
-                src={`${item.coverImage}`}
-                alt="logo"
-                className="w-full h-full object-center object-cover"
-              />
-            </div>
             {/*content */}
-            <div className="flex flex-col gap-y-3 bg-slate-200 rounded-lg p-2">
+            <div className="flex bg-slate-200 flex-col gap-y-3 rounded-lg p-2">
+              {/* cover */}
+              <div className=" aspect-h-9 aspect-w-16 rounded-lg flex justify-center">
+                <img
+                  src={`${item.coverImage}`}
+                  alt="logo"
+                  className="w-full h-full rounded-md object-center object-cover"
+                />
+              </div>
               {/* title */}
               <Link href={`/posts/${item.hashId}/${item.slug}`}>
                 <a>
@@ -30,7 +32,7 @@ const Blogs = ({ blogsData }) => {
               </Link>
               {/* caption */}
               <div className="flex justify-between">
-                <p className="text-sm">{item.author.name}</p>
+                <p className="text-sm">danial jankouk</p>
                 <Link
                   href={`/blogs/${
                     item.category !== null ? item.category.englishTitle : ""

@@ -7,14 +7,13 @@ const HomePage = () => {
   const user = useAuth();
   useEffect(() => {
     if (!user) router.push("/signin");
-  },[])
-  console.log(user);
+  }, []);
   return (
     <>
-    <Layer />
-    <div className="flex justify-center items-center bg-slate-300 h-screen">
-      <h1 className="text-3xl italic">welcome {user.name}</h1>
-    </div>
+      <Layer />
+      <div className="flex justify-center items-center bg-slate-300 h-screen">
+        <h1 className="text-3xl italic">welcome</h1>
+      </div>
     </>
   );
 };

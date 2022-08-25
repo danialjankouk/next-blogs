@@ -29,9 +29,6 @@ const SignIn = () => {
     validationSchema,
     validateOnMount: true,
   });
-  // useEffect(() => {
-  //   if (user) Router.push("/blogs");
-  // }, [user]);
   return (
     <div>
       <Layer />

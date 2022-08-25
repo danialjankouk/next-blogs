@@ -8,10 +8,10 @@ import Layer from "components/Layer";
 import http from "services/httpService";
 const PostPage = ({ blogsData, categoryData }) => {
   return (
-    <div className="bg-gray-200 h-auto">
+    <div className="container w-full mx-auto h-auto">
       {/* header */}
       <Layer />
-      <div className="container mx-auto py-2 px-2">
+      <div className="py-2 px-2">
         <div className="grid gap-4 md:grid-cols-12 md:grid-rows-[70px_minmax(300px,_1fr)] min-h-screen">
           {/*--------------- category---------------- */}
           <Category categoryData={categoryData} />
